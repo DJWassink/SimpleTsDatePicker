@@ -6,8 +6,8 @@ export const classNames = (obj: {[key: string]: boolean}) => {
 
 export const range = (length: number) => Array(length).fill(null);
 
-export const sameDates = (d1: Date, d2: Date) => {
-    return d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate() && d1.getFullYear() === d2.getFullYear();
+export const sameDays = (d1: Date, d2: Date) => {
+    return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
 };
 
 export const deltaDate = (date: Date, yearDelta: number, monthDelta = 0, dayDelta = 0) => {
@@ -37,8 +37,15 @@ export const generateMatrix = (date: Date, weekStart: number) => {
     });
 };
 
-export const inMatrix = (matrix: Date[][], date: Date) => {
+export const isInMatrix = (matrix: Date[][], date: Date) => {
     return matrix.some(row => {
-        return row.some(rowDate => sameDates(rowDate, date));
+        return row.some(rowDate => sameDays(rowDate, date));
+    });
+};
+
+export const abbreviationDays = (abbreviations: string[], weekStart: number) => {
+    return range(7).map((_, index) => {
+        const dayIndex = index + weekStart;
+        return dayIndex >= 7 ? abbreviations[dayIndex - 7] : abbreviations[dayIndex];
     });
 };
