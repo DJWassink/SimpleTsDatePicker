@@ -1,25 +1,58 @@
 {
-  "name": "datepicker",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts-ts": "2.13.0"
-  },
-  "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  },
-  "devDependencies": {
-    "@types/jest": "^22.1.1",
-    "@types/node": "^9.4.0",
-    "@types/react": "^16.0.36",
-    "@types/react-dom": "^16.0.3",
-    "tslint-config-prettier": "^1.7.0",
-    "tslint-eslint-rules": "^4.1.1",
-    "typescript": "^2.7.1"
-  }
+    "name": "simple-date-picker",
+    "version": "1.0.0",
+    "description": "An simple best extensible typescript react datepicker",
+    "keywords": ["simple", "date", "picker", "date-picker", "datepicker", "react", "typescript"],
+    "license": "MIT",
+    "main": "dist/simple_datepicker.js",
+    "module": "dist/simple_datepicker.es6.js",
+    "types": "dist/simple_datepicker.d.ts",
+    "files": ["dist"],
+    "sideEffects": false,
+    "scripts": {
+        "precommit": "lint-staged",
+        "prepublish": "npm run build",
+        "prebuild": "rimraf dist",
+        "build":
+            "tsc -p tsconfig.json && yarn copy ./src/**/*.sass ./compiled && cross-env NODE_ENV=production rollup -c && rimraf compiled",
+        "watch": "rollup -cw",
+        "start": "rollup -cw",
+        "lint": "tslint -p ./tsconfig.json",
+        "lint:fix": "tslint -p ./tsconfig.json --fix",
+        "prettier": "prettier --write \"src/**/*.ts*\""
+    },
+    "lint-staged": {
+        "*.{ts,js}": ["prettier --write", "tslint -c ./tslint.json", "git add"]
+    },
+    "peerDependencies": {
+        "react": ">=15"
+    },
+    "devDependencies": {
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "autoprefixer": "^8.0.0",
+        "copy": "^0.3.1",
+        "cross-env": "^5.1.4",
+        "node-sass": "^4.8.3",
+        "prettier": "^1.11.1",
+        "react-dom": "16",
+        "rimraf": "^2.6.2",
+        "rollup": "latest",
+        "rollup-plugin-commonjs": "latest",
+        "rollup-plugin-filesize": "^1.5.0",
+        "rollup-plugin-node-resolve": "^3.3.0",
+        "rollup-plugin-postcss": "^1.4.1",
+        "rollup-plugin-replace": "latest",
+        "rollup-plugin-sass": "^0.6.0",
+        "rollup-plugin-sourcemaps": "^0.4.2",
+        "rollup-plugin-uglify": "^3.0.0",
+        "rollup-watch": "latest",
+        "tslib": "latest",
+        "tslint": "latest",
+        "tslint-config-prettier": "^1.10.0",
+        "tslint-eslint-rules": "^5.1.0",
+        "typescript": "latest",
+        "typings": "latest"
+    },
+    "dependencies": {}
 }

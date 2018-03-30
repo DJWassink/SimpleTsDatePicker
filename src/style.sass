@@ -1,0 +1,74 @@
+//colors
+$font_color: #787878
+$white: white
+$red: #e74c3c
+$light_gray: #eee
+$gray: #ccc
+
+.fus-datepicker 
+	border-spacing: 0
+	color: $font_color
+	background: $white
+	width: 100%
+	border-radius: 6px
+	font-family: Lato, sans-serif
+	overflow: hidden
+	outline: none
+	* 
+		box-sizing: border-box
+
+	th 
+		color: $white
+		height: 50px
+
+	td 
+		text-align: center
+		vertical-align: middle
+		width: 47px
+		height: 47px
+		outline-color: $red
+		&.day 
+			cursor: pointer
+			&:not(.selected) 
+				&:hover 
+					background: $light_gray
+
+				&.cursor:not(:hover) 
+					border: 2px solid $red
+
+		&.grayed 
+			color: $gray
+
+		&.selected 
+			color: $white
+			background: $red
+
+		&.today:not(.selected) 
+			color: $red
+
+	.weekdays 
+		color: $red
+
+	.chevron 
+		cursor: pointer
+		user-select: none
+		font-size: 2.5em
+		margin-top: -0.1em
+    	transition: color 0.2s ease-in-out
+		float: left
+		width: 100%
+		text-align: center
+		&:hover 
+			color: $gray
+
+	select 
+		border: none
+		background: $white
+		padding: 4px
+		margin: 0 5px
+		font-size: 16px
+		border-radius: 6px
+		text-align: center
+
+	thead tr:first-child 
+		background: $red

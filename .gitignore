@@ -1,13 +1,31 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
+build/
+dist/
+compiled/
+coverage
 
-# dependencies
-/node_modules
 
-# testing
-/coverage
+*~
+*.sw[mnpcod]
+*.log
+*.lock
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
 
-# production
-/build
+.idea/
+.vscode/
+.sass-cache/
+.versions/
+node_modules/
+$RECYCLE.BIN/
+
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+.env
+.rpt2_cache/
 
 # misc
 .DS_Store

@@ -1,10 +1,13 @@
 export const classNames = (obj: {[key: string]: boolean}) => {
     return Object.keys(obj)
-        .reduce((acc, name) => (obj[name] ? [...acc, name] : acc), [])
+        .reduce((acc: string[], name) => (obj[name] ? [...acc, name] : acc), [])
         .join(' ');
 };
 
-export const range = (length: number) => Array(length).fill(null);
+export const range = (length: number) =>
+    Array(length)
+        .fill(null)
+        .map((_, i) => i);
 
 export const sameDays = (d1: Date, d2: Date) => {
     return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
@@ -30,8 +33,8 @@ export const generateMatrix = (date: Date, weekStart: number) => {
     const firstDayOfMonth = getFirstDayOfMonth(date);
     const startDate = getFirstDayOfWeek(firstDayOfMonth, weekStart);
 
-    return range(6).map((row, i) => {
-        return range(7).map((column, j) => {
+    return range(6).map((_, i) => {
+        return range(7).map((__, j) => {
             return new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i * 7 + j);
         });
     });

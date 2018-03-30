@@ -1,0 +1,17 @@
+src/
+tests/
+.idea
+node_modules
+example
+npm-debug.log
+yarn-error.log
+.babelrc
+.travis.yml
+karma.config.js
+mocha.config.js
+.rpt2_cache
+.prettierrc
+index.html
+rollup.config.js
+tsconfig.json
+tslint.json

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <title>React Typescript Rollup Scaffold</title>
+
+  <style>
+    body {
+      background-color: #f4f2e7;
+    }
+
+    .wrapper {
+      margin: 0 auto;
+      width: 350px
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="./dist/simple_datepicker.css"></link>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="./dist/simple_datepicker.umd.min.js"></script>
+  <script type="text/babel">
+      class DemoContainer extends React.Component {
+        constructor(props) {
+          super(props);
+  
+          this.state = {
+            value: new Date()
+          }
+  
+          this.onValueChange = this.onValueChange.bind(this);
+        }
+  
+        onValueChange(value) {
+          this.setState({ value });
+        }
+  
+        render() {
+          return <SimpleDatePicker.SimpleDatePicker value={this.state.value} onChange={this.onValueChange} />;
+        }
+      }
+  
+      ReactDOM.render(
+        <div className="wrapper">
+          <DemoContainer />
+        </div>,
+        document.getElementById('root')
+      );
+  
+    </script>
+
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>
