@@ -4,3 +4,5 @@
 
 
 Super simple but extensible datepicker
+
+To get a simple idea about the default behavior check the demo: https://codesandbox.io/s/lroo4k4xql
