@@ -1,6 +1,6 @@
 {
     "name": "simple-ts-date-picker",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "An simple best extensible typescript react datepicker",
     "keywords": ["simple", "date", "picker", "date-picker", "datepicker", "react", "typescript"],
     "license": "MIT",
@@ -9,12 +9,21 @@
     "types": "dist/simple_datepicker.d.ts",
     "files": ["dist"],
     "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DJWassink/SimpleTsDatePicker.git"
+    },
+    "author": "Dirk-Jan Wassink <dirk.jan.wassink@gmail.com> (http://dirkjanwassink.nl)",
+    "bugs": {
+        "url": "https://github.com/DJWassink/SimpleTsDatePicker/issues"
+    },
+    "homepage": "https://github.com/DJWassink/SimpleTsDatePicker#readme",
     "scripts": {
         "precommit": "yarn lint-staged",
         "prepublish": "yarn build",
         "prebuild": "yarn rimraf dist",
         "build":
-            "yarn tsc -p tsconfig.json && yarn copy ./src/**/*.sass ./compiled && yarn cross-env NODE_ENV=development rollup -c && yarn rimraf compiled",
+            "yarn tsc -p tsconfig.json && yarn copy ./src/**/*.sass ./compiled && yarn cross-env NODE_ENV=production rollup -c && yarn rimraf compiled",
         "watch": "rollup -cw",
         "start": "rollup -cw",
         "lint": "tslint -p ./tsconfig.json",
@@ -24,6 +33,7 @@
     "lint-staged": {
         "*.{ts,js}": ["prettier --write", "tslint -c ./tslint.json", "git add"]
     },
+    "dependencies": {},
     "peerDependencies": {
         "react": ">=15"
     },
@@ -53,6 +63,5 @@
         "tslint-config-prettier": "^1.10.0",
         "tslint-eslint-rules": "^5.1.0",
         "typescript": "latest"
-    },
-    "dependencies": {}
+    }
 }

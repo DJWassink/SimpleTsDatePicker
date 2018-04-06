@@ -66,7 +66,14 @@ export interface SimpleDatePickerProps {
     weekStart?: number;
     onChange: (value: Date) => void;
 
-    renderDay?: (day: Date, value: Date, screen: Date, cursor: Date) => JSX.Element;
+    renderDay?: (
+        day: Date,
+        value: Date,
+        screen: Date,
+        cursor: Date,
+        onClick: () => void,
+        onMouseMove: () => void
+    ) => JSX.Element;
     renderHeader?: (i18n: I18n, screen: Date, onScreenChange: (screen: Date) => void) => JSX.Element;
     renderAbbreviations?: (i18n: I18n, weekStart: number) => JSX.Element;
 }
@@ -109,7 +116,14 @@ export class SimpleDatePicker extends React.Component<SimpleDatePickerProps, Sim
         );
     };
 
-    private renderDay = (day: Date, value: Date, screen: Date, cursor: Date) => {
+    private renderDay = (
+        day: Date,
+        value: Date,
+        screen: Date,
+        cursor: Date,
+        onClick: () => void,
+        onMouseMove: () => void
+    ) => {
         return (
             <Day
                 key={day.toString()}
@@ -117,12 +131,8 @@ export class SimpleDatePicker extends React.Component<SimpleDatePickerProps, Sim
                 value={value}
                 screen={screen}
                 cursor={cursor}
-                onClick={() => this.onChange(day)}
-                onMouseMove={() => {
-                    if (!sameDays(day, this.state.cursor)) {
-                        this.onCursorChange(day);
-                    }
-                }}
+                onClick={onClick}
+                onMouseMove={onMouseMove}
             />
         );
     };
@@ -141,7 +151,18 @@ export class SimpleDatePicker extends React.Component<SimpleDatePickerProps, Sim
         const matrix = generateMatrix(this.state.screen, weekStart);
 
         const renderDay = (day: Date) =>
-            (this.props.renderDay || this.renderDay)(day, this.props.value, this.state.screen, this.state.cursor);
+            (this.props.renderDay || this.renderDay)(
+                day,
+                this.props.value,
+                this.state.screen,
+                this.state.cursor,
+                () => this.onChange(day),
+                () => {
+                    if (!sameDays(day, this.state.cursor)) {
+                        this.onCursorChange(day);
+                    }
+                }
+            );
         const abbreviations = (this.props.renderAbbreviations || this.renderAbbreviations)(i18n, weekStart);
         const header = (this.props.renderHeader || this.renderHeader)(i18n, this.state.screen, this.onScreenChange);
 

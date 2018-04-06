@@ -7,9 +7,11 @@ export interface DayProps extends React.TdHTMLAttributes<HTMLTableDataCellElemen
     value: Date;
     screen: Date;
     cursor: Date;
+    onClick: () => void;
+    onMouseMove: () => void;
 }
 
-export const Day: React.SFC<DayProps> = ({day, value, screen, cursor, ...props}) => {
+export const Day: React.SFC<DayProps> = ({day, value, screen, cursor, onClick, onMouseMove, ...props}) => {
     const isPrevMonth = screen.getMonth() === 0 ? day.getMonth() === 11 : day.getMonth() === screen.getMonth() - 1;
     const isNextMonth = screen.getMonth() === 11 ? day.getMonth() === 0 : day.getMonth() === screen.getMonth() + 1;
     const isInThisMonth = !isPrevMonth && !isNextMonth;
@@ -23,7 +25,7 @@ export const Day: React.SFC<DayProps> = ({day, value, screen, cursor, ...props})
     });
 
     return (
-        <td {...props} className={classNamesString}>
+        <td {...props} onClick={onClick} onMouseMove={onMouseMove} className={classNamesString}>
             {day.getDate()}
         </td>
     );
