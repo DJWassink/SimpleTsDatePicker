@@ -64,10 +64,10 @@ export interface SimpleDatePickerProps {
     i18n?: I18n;
     value: Date;
     weekStart?: number;
-    onChange: (date: Date) => void;
+    onChange: (value: Date) => void;
 
-    renderDay?: (date: Date) => JSX.Element;
-    renderHeader?: (i18n: I18n) => JSX.Element;
+    renderDay?: (day: Date, value: Date, screen: Date, cursor: Date) => JSX.Element;
+    renderHeader?: (i18n: I18n, screen: Date, onScreenChange: (screen: Date) => void) => JSX.Element;
     renderAbbreviations?: (i18n: I18n, weekStart: number) => JSX.Element;
 }
 
@@ -109,14 +109,14 @@ export class SimpleDatePicker extends React.Component<SimpleDatePickerProps, Sim
         );
     };
 
-    private renderDay = (day: Date) => {
+    private renderDay = (day: Date, value: Date, screen: Date, cursor: Date) => {
         return (
             <Day
                 key={day.toString()}
                 day={day}
-                value={this.props.value}
-                screen={this.state.screen}
-                cursor={this.state.cursor}
+                value={value}
+                screen={screen}
+                cursor={cursor}
                 onClick={() => this.onChange(day)}
                 onMouseMove={() => {
                     if (!sameDays(day, this.state.cursor)) {
@@ -131,8 +131,8 @@ export class SimpleDatePicker extends React.Component<SimpleDatePickerProps, Sim
         return <Abbreviations i18n={i18n} weekStart={weekStart} />;
     };
 
-    private renderHeader = (i18n: I18n) => {
-        return <Header i18n={i18n} screen={this.state.screen} onScreenChange={this.onScreenChange} />;
+    private renderHeader = (i18n: I18n, screen: Date, onScreenChange: (screen: Date) => void) => {
+        return <Header i18n={i18n} screen={screen} onScreenChange={onScreenChange} />;
     };
 
     public render() {
@@ -140,11 +140,10 @@ export class SimpleDatePicker extends React.Component<SimpleDatePickerProps, Sim
         const i18n = this.props.i18n || defaultI18n;
         const matrix = generateMatrix(this.state.screen, weekStart);
 
-        const renderDay = this.props.renderDay || this.renderDay;
-        const abbreviations = this.props.renderAbbreviations
-            ? this.props.renderAbbreviations(i18n, weekStart)
-            : this.renderAbbreviations(i18n, weekStart);
-        const header = this.props.renderHeader ? this.props.renderHeader(i18n) : this.renderHeader(i18n);
+        const renderDay = (day: Date) =>
+            (this.props.renderDay || this.renderDay)(day, this.props.value, this.state.screen, this.state.cursor);
+        const abbreviations = (this.props.renderAbbreviations || this.renderAbbreviations)(i18n, weekStart);
+        const header = (this.props.renderHeader || this.renderHeader)(i18n, this.state.screen, this.onScreenChange);
 
         return (
             <DatePicker

@@ -1,6 +1,6 @@
 {
-    "name": "simple-date-picker",
-    "version": "1.0.0",
+    "name": "simple-ts-date-picker",
+    "version": "1.1.0",
     "description": "An simple best extensible typescript react datepicker",
     "keywords": ["simple", "date", "picker", "date-picker", "datepicker", "react", "typescript"],
     "license": "MIT",
@@ -10,11 +10,11 @@
     "files": ["dist"],
     "sideEffects": false,
     "scripts": {
-        "precommit": "lint-staged",
-        "prepublish": "npm run build",
-        "prebuild": "rimraf dist",
+        "precommit": "yarn lint-staged",
+        "prepublish": "yarn build",
+        "prebuild": "yarn rimraf dist",
         "build":
-            "tsc -p tsconfig.json && yarn copy ./src/**/*.sass ./compiled && cross-env NODE_ENV=production rollup -c && rimraf compiled",
+            "yarn tsc -p tsconfig.json && yarn copy ./src/**/*.sass ./compiled && yarn cross-env NODE_ENV=development rollup -c && yarn rimraf compiled",
         "watch": "rollup -cw",
         "start": "rollup -cw",
         "lint": "tslint -p ./tsconfig.json",
@@ -33,6 +33,8 @@
         "autoprefixer": "^8.0.0",
         "copy": "^0.3.1",
         "cross-env": "^5.1.4",
+        "husky": "^0.14.3",
+        "lint-staged": "^7.0.0",
         "node-sass": "^4.8.3",
         "prettier": "^1.11.1",
         "react-dom": "16",
@@ -47,12 +49,10 @@
         "rollup-plugin-sourcemaps": "^0.4.2",
         "rollup-plugin-uglify": "^3.0.0",
         "rollup-watch": "latest",
-        "tslib": "latest",
         "tslint": "latest",
         "tslint-config-prettier": "^1.10.0",
         "tslint-eslint-rules": "^5.1.0",
-        "typescript": "latest",
-        "typings": "latest"
+        "typescript": "latest"
     },
     "dependencies": {}
 }

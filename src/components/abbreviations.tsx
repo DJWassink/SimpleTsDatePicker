@@ -1,11 +1,13 @@
 import * as React from 'react';
-import {abbreviationDays} from '../utils';
+
 import {I18n} from '../i18n';
+import {abbreviationDays} from '../utils';
 
 export interface AbbreviationsProps extends React.HTMLAttributes<HTMLTableRowElement> {
     i18n: I18n;
     weekStart: number;
 }
+
 export const Abbreviations: React.SFC<AbbreviationsProps> = ({i18n, weekStart, ...props}) => {
     return (
         <tr className="weekdays" {...props}>
