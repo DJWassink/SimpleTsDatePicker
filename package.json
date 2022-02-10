@@ -45,7 +45,7 @@
         "cross-env": "^5.1.4",
         "husky": "^0.14.3",
         "lint-staged": "^7.0.0",
-        "node-sass": "^4.8.3",
+        "node-sass": "^7.0.0",
         "prettier": "^1.11.1",
         "react-dom": "16",
         "rimraf": "^2.6.2",
